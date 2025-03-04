@@ -13,9 +13,52 @@ html {
     min-height: 100%;
 }
 
+:root {
+    --bg-dark: #2DAA9E;
+    --bg-primary: #66D2CE;
+    --bg-light: #E3D2C3;
+    --bg-white: #EAEAEA;
+}
+
+.navbar {
+    background-color: var(--bg-dark) !important;
+}
+
+.custom-bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.custom-bg-dark {
+    background-color: var(--bg-dark);
+}
+
+.custom-bg-light {
+    background-color: var(--bg-light);
+}
+
+.custom-bg-white {
+    background-color: var(--bg-white);
+}
+
+.custom-color-primary {
+    color: var(--bg-primary);
+}
+
+.custom-color-dark {
+    color: var(--bg-dark);
+}
+
+.custom-color-light {
+    color: var(--bg-light);
+}
+
+.custom-color-white {
+    color: var(--bg-white);
+}
+
 body {
     margin-bottom: 60px;
-    background-color: lightblue;
+    background-color: var(--bg-light);
 }
 
 /* Hide the spinner controls (both increment and decrement) in number input */
@@ -34,3 +77,5 @@ a {
     text-decoration: none;
     color: purple;
 }
+
+

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ABCMoneyTransfer.Data;
+namespace ABC.Infrastructure.Identity.Data;
 
 public class AppDBContext : IdentityDbContext<IdentityUser>
 {
