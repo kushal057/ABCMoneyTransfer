@@ -53,7 +53,7 @@ namespace ABC.Application.ViewModel
                     ExchangeRate = PaymentDetail.ExchangeRate,
                     PayoutAmountNPR = PaymentDetail.PayoutAmount, 
                     AccountNumber = PaymentDetail.AccountNumber
-                }
+                },
             };
         }
     }

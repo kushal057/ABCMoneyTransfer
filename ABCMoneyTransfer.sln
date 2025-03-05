@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Application", "ABC.DTO\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.API", "ABC.API\ABC.API.csproj", "{299DC24E-9481-4CB4-A801-692507E8BE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Client", "ABC.Client\ABC.Client.csproj", "{7FD1AE32-C1B8-44F7-9A62-D7D3F85F27BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{299DC24E-9481-4CB4-A801-692507E8BE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{299DC24E-9481-4CB4-A801-692507E8BE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{299DC24E-9481-4CB4-A801-692507E8BE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FD1AE32-C1B8-44F7-9A62-D7D3F85F27BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FD1AE32-C1B8-44F7-9A62-D7D3F85F27BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FD1AE32-C1B8-44F7-9A62-D7D3F85F27BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FD1AE32-C1B8-44F7-9A62-D7D3F85F27BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
