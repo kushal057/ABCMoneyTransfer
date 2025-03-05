@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ABC.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20250304221109_InitialMigrationWithEntities")]
+    [Migration("20250305014917_InitialMigrationWithEntities")]
     partial class InitialMigrationWithEntities
     {
         /// <inheritdoc />
@@ -24,37 +24,6 @@ namespace ABC.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ABC.Core.Entities.Currency", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal?>("Buy")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Iso3")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RateId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Sell")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RateId");
-
-                    b.ToTable("Currency");
-                });
 
             modelBuilder.Entity("ABC.Core.Entities.MoneyTransfer", b =>
                 {
@@ -145,28 +114,6 @@ namespace ABC.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PersonalDetail");
-                });
-
-            modelBuilder.Entity("ABC.Core.Entities.Rate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("PublishedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rate");
                 });
 
             modelBuilder.Entity("ABC.Core.Entities.Receiver", b =>
@@ -407,17 +354,6 @@ namespace ABC.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ABC.Core.Entities.Currency", b =>
-                {
-                    b.HasOne("ABC.Core.Entities.Rate", "Rate")
-                        .WithMany("Currencies")
-                        .HasForeignKey("RateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rate");
-                });
-
             modelBuilder.Entity("ABC.Core.Entities.MoneyTransfer", b =>
                 {
                     b.HasOne("ABC.Core.Entities.PaymentDetail", "PaymentDetail")
@@ -516,11 +452,6 @@ namespace ABC.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ABC.Core.Entities.Rate", b =>
-                {
-                    b.Navigation("Currencies");
                 });
 #pragma warning restore 612, 618
         }

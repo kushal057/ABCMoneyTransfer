@@ -8,5 +8,6 @@ namespace ABC.Core.Interfaces.API
 {
     public interface IExchangeRateAPIService
     {
+        
     }
 }

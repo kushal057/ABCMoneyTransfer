@@ -9,7 +9,6 @@ namespace ABC.Core.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IMoneyTransferRepository MoneyTransferRepository { get; }
-        ICurrencyRepository CurrencyRepository { get; }
         ISenderRepository SenderRepository { get; }
         IReceiverRepository ReceiverRepository { get; }
         Task<int> CompleteAsync();

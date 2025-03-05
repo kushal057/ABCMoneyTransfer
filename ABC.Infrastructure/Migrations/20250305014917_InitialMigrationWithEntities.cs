@@ -85,21 +85,6 @@ namespace ABC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rate",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PublishedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rate", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -244,29 +229,6 @@ namespace ABC.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Currency",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Iso3 = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Buy = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Sell = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    RateId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Currency", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Currency_Rate_RateId",
-                        column: x => x.RateId,
-                        principalTable: "Rate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MoneyTransfer",
                 columns: table => new
                 {
@@ -336,11 +298,6 @@ namespace ABC.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Currency_RateId",
-                table: "Currency",
-                column: "RateId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MoneyTransfer_PaymentDetailId",
                 table: "MoneyTransfer",
                 column: "PaymentDetailId");
@@ -385,9 +342,6 @@ namespace ABC.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Currency");
-
-            migrationBuilder.DropTable(
                 name: "MoneyTransfer");
 
             migrationBuilder.DropTable(
@@ -395,9 +349,6 @@ namespace ABC.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Rate");
 
             migrationBuilder.DropTable(
                 name: "PaymentDetail");

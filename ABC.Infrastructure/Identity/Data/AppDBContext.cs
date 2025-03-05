@@ -12,8 +12,6 @@ public class AppDBContext : IdentityDbContext<IdentityUser>
     public DbSet<PaymentDetail> PaymentDetail { get; set; }
     public DbSet<Sender> Sender { get; set; }
     public DbSet<Receiver> Receiver { get; set; }
-    public DbSet<Rate> Rate { get; set; }
-    public DbSet<Currency> Currency { get; set; }
 
     public AppDBContext(DbContextOptions<AppDBContext> options)
         : base(options)
@@ -39,12 +37,6 @@ public class AppDBContext : IdentityDbContext<IdentityUser>
             .WithMany()
             .HasForeignKey(mt => mt.PaymentDetailId)
             .OnDelete(DeleteBehavior.NoAction);
-
-        modelBuilder.Entity<Rate>()
-            .HasMany(mt => mt.Currencies)
-            .WithOne(c => c.Rate)
-            .HasForeignKey(mt => mt.RateId)
-            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Sender>()
             .HasOne(mt => mt.PersonalDetails)

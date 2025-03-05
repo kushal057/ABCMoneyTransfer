@@ -1,5 +1,4 @@
-﻿using ABC.Core.DTOs;
-using ABC.Core.Entities;
+﻿using ABC.Core.Entities;
 using ABC.Core.Interfaces.Repository;
 using ABC.Infrastructure.Identity.Data;
 using Microsoft.EntityFrameworkCore;
