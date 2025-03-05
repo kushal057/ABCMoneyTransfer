@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ABC.Core.Enums
 {
-    public enum Currency
+    public enum Currencies
     {
         INR,
         USD,

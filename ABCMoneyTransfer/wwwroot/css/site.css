@@ -58,7 +58,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: var(--bg-light);
+    background-color: var(--bg-white);
 }
 
 /* Hide the spinner controls (both increment and decrement) in number input */

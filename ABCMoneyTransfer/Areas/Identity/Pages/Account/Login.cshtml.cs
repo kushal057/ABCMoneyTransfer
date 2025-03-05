@@ -103,7 +103,7 @@ namespace ABCMoneyTransfer.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null) // login the user
         {
-            returnUrl ??= Url.Content("~/Money/Index");
+            returnUrl ??= Url.Content("~/MoneyTransfer/Index");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 

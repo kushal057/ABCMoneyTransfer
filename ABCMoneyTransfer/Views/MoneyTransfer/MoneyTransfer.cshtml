@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ABC.Application.ViewModel
+
+@model MoneyTransferViewModel
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Money Transfer";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 ml-4">Transaction Information</h2>
+    <form asp-action="MoneyTransfer" method="post" class="p-4 border rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-4 custom-color-dark">Sender Information</h5>
+                <div class="mb-3">
+                    <label for="senderFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="senderFirstName" asp-for="Sender.FirstName" placeholder="Enter first name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="senderMiddleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="senderMiddleName" asp-for="Sender.MiddleName" placeholder="Enter middle name">
+                </div>
+                <div class="mb-3">
+                    <label for="senderLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="senderLastName" asp-for="Sender.LastName" placeholder="Enter last name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="senderAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="senderAddress" asp-for="Sender.Address" placeholder="Enter address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="senderCountry" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="senderCountry" asp-for="Sender.Country" value="Malaysia" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="mb-4 custom-color-dark">Receiver Information</h5>
+                <div class="mb-3">
+                    <label for="receiverFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="receiverFirstName" asp-for="Receiver.FirstName" placeholder="Enter first name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="receiverMiddleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="receiverMiddleName" asp-for="Receiver.MiddleName" placeholder="Enter middle name">
+                </div>
+                <div class="mb-3">
+                    <label for="receiverLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="receiverLastName" asp-for="Receiver.LastName" placeholder="Enter last name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="receiverAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="receiverAddress" asp-for="Receiver.Address" placeholder="Enter address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="receiverCountry" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="receiverCountry" asp-for="Receiver.Country" value="Nepal" readonly>
+                </div>
+            </div>
+        </div>
+        <h5 class="mt-4 mb-3 custom-color-dark">Payment Details</h5>
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <input type="text" class="form-control" id="bankName" asp-for="PaymentDetail.BankName" placeholder="Enter bank name" required>
+        </div>
+        <div class="mb-3">
+            <label for="accountNumber" class="form-label">Account Number</label>
+            <input type="text" class="form-control" id="accountNumber" asp-for="PaymentDetail.AccountNumber" placeholder="Enter account number" required>
+        </div>
+        <div class="mb-3">
+            <label for="transferAmount" class="form-label">Transfer Amount (MYR)</label>
+            <input type="number" class="form-control" id="transferAmount" asp-for="PaymentDetail.TransferAmount" placeholder="Enter amount in MYR" required>
+        </div>
+        <div class="mb-3">
+            <label for="exchangeRate" class="form-label">Exchange Rate</label>
+            <input type="number" class="form-control" id="exchangeRate" asp-for="PaymentDetail.ExchangeRate" placeholder="Enter exchange rate" required>
+        </div>
+        <div class="mb-4">
+            <label for="payoutAmount" class="form-label">Payout Amount (NPR)</label>
+            <input type="number" class="form-control" id="payoutAmount" asp-for="PaymentDetail.PayoutAmount" placeholder="Payout amount in NPR" readonly>
+        </div>
+        <button type="submit" class="btn custom-bg-dark text-white">Transfer Money</button>
+    </form>
+</div>

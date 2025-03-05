@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCMoneyTransfer", "ABCMoneyTransfer\ABCMoneyTransfer.csproj", "{15F91C20-A1FF-40BA-AB74-768245738B0B}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Infrastructure", "ABC.Infrastructure\ABC.Infrastructure.csproj", "{8B2FE675-936B-41FC-BAE4-6C8D71EC4D4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.Application", "ABC.DTO\ABC.Application.csproj", "{43467B0F-F934-444B-9D55-5D4E219723EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABC.API", "ABC.API\ABC.API.csproj", "{44E6C66C-91A0-49F8-A542-83EF757F8BBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{43467B0F-F934-444B-9D55-5D4E219723EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43467B0F-F934-444B-9D55-5D4E219723EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43467B0F-F934-444B-9D55-5D4E219723EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E6C66C-91A0-49F8-A542-83EF757F8BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E6C66C-91A0-49F8-A542-83EF757F8BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E6C66C-91A0-49F8-A542-83EF757F8BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E6C66C-91A0-49F8-A542-83EF757F8BBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

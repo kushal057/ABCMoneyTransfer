@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ABC.Core.Interfaces
+namespace ABC.API.Services
 {
-    public interface IMoneyService
+    public class ExchangeRateAPIService
     {
-        public 
     }
 }

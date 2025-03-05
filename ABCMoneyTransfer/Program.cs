@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using ABC.Infrastructure.Identity.Data;
 using ABC.Core.Interfaces;
 using ABC.Application.Services;
+using ABC.Core.Interfaces.Repository;
+using ABC.Infrastructure;
+using ABC.Core.Interfaces.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDBContextConnection' not found.");
@@ -14,7 +17,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IMoneyService, MoneyService>();
+builder.Services.AddScoped<IMoneyTransferService, MoneyTransferService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

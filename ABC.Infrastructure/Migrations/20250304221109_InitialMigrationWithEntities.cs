@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ABC.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrationWithEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,6 +48,55 @@ namespace ABC.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentDetail",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TransferAmountMYR = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ExchangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PayoutAmountNPR = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentDetail", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonalDetail",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonalDetail", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rate",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PublishedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rate", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +205,97 @@ namespace ABC.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Receiver",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonalDetailId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Receiver", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Receiver_PersonalDetail_PersonalDetailId",
+                        column: x => x.PersonalDetailId,
+                        principalTable: "PersonalDetail",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sender",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonalDetailId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sender", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sender_PersonalDetail_PersonalDetailId",
+                        column: x => x.PersonalDetailId,
+                        principalTable: "PersonalDetail",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Currency",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Iso3 = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Buy = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Sell = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    RateId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Currency", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Currency_Rate_RateId",
+                        column: x => x.RateId,
+                        principalTable: "Rate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MoneyTransfer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SenderId = table.Column<int>(type: "int", nullable: false),
+                    ReceiverId = table.Column<int>(type: "int", nullable: false),
+                    PaymentDetailId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MoneyTransfer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MoneyTransfer_PaymentDetail_PaymentDetailId",
+                        column: x => x.PaymentDetailId,
+                        principalTable: "PaymentDetail",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MoneyTransfer_Receiver_ReceiverId",
+                        column: x => x.ReceiverId,
+                        principalTable: "Receiver",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MoneyTransfer_Sender_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "Sender",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -194,6 +334,36 @@ namespace ABC.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Currency_RateId",
+                table: "Currency",
+                column: "RateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MoneyTransfer_PaymentDetailId",
+                table: "MoneyTransfer",
+                column: "PaymentDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MoneyTransfer_ReceiverId",
+                table: "MoneyTransfer",
+                column: "ReceiverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MoneyTransfer_SenderId",
+                table: "MoneyTransfer",
+                column: "SenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Receiver_PersonalDetailId",
+                table: "Receiver",
+                column: "PersonalDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sender_PersonalDetailId",
+                table: "Sender",
+                column: "PersonalDetailId");
         }
 
         /// <inheritdoc />
@@ -215,10 +385,31 @@ namespace ABC.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Currency");
+
+            migrationBuilder.DropTable(
+                name: "MoneyTransfer");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Rate");
+
+            migrationBuilder.DropTable(
+                name: "PaymentDetail");
+
+            migrationBuilder.DropTable(
+                name: "Receiver");
+
+            migrationBuilder.DropTable(
+                name: "Sender");
+
+            migrationBuilder.DropTable(
+                name: "PersonalDetail");
         }
     }
 }
